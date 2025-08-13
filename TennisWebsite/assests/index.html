@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnthusiTennis - Connect, Play, Improve</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="logo">🎾</div>
+                    <h1>EnthusiTennis</h1>
+                    <p>Connect. Play. Improve.</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="login-email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('login-password')">👁️</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="auth-switch">
+                        Don't have an account? 
+                        <a href="#" class="text-link" onclick="switchToRegister()">Sign up</a>
+                    </div>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="hidden">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <div class="input-group">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="register-name" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="register-email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="register-password" class="form-input no-icon" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" class="form-input no-icon" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Skill Level</label>
+                        <select id="register-skill" class="form-input no-icon" required>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Beginner-Intermediate">Beginner-Intermediate</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Intermediate-Advanced">Intermediate-Advanced</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" id="register-location" class="form-input no-icon" placeholder="City, State" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bio</label>
+                        <textarea id="register-bio" class="form-input no-icon" rows="2" placeholder="Tell others about your tennis journey..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Availability</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="avail-mornings" value="Mornings">
+                                <label for="avail-mornings">Mornings</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="avail-afternoons" value="Afternoons">
+                                <label for="avail-afternoons">Afternoons</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="avail-evenings" value="Evenings">
+                                <label for="avail-evenings">Evenings</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="avail-weekends" value="Weekends">
+                                <label for="avail-weekends">Weekends</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="avail-weekdays" value="Weekdays">
+                                <label for="avail-weekdays">Weekdays</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                    <div class="auth-switch">
+                        Already have an account? 
+                        <a href="#" class="text-link" onclick="switchToLogin()">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main App -->
+        <div id="main-app" class="main-app hidden">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="navbar-content">
+                    <div class="navbar-brand">
+                        <span class="logo">🎾</span>
+                        <h1>EnthusiTennis</h1>
+                    </div>
+                    <div class="navbar-nav">
+                        <div class="nav-item active" data-view="feed">Feed</div>
+                        <div class="nav-item" data-view="matches">Matches</div>
+                        <div class="nav-item" data-view="messages">Messages</div>
+                        <div class="nav-item" data-view="profile">Profile</div>
+                        <div class="user-info">
+                            <span>Welcome, <span id="user-name">User</span></span>
+                            <button class="logout-btn" onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Feed View -->
+                <div id="feed-view" class="content-container">
+                    <div class="card">
+                        <div class="post-creator">
+                            <span class="user-avatar">🎾</span>
+                            <div class="post-input">
+                                <textarea id="new-post" class="post-textarea" rows="3" placeholder="Share your tennis journey..."></textarea>
+                                <div class="post-actions">
+                                    <div class="post-options">
+                                        <button class="post-option">📍 Location</button>
+                                        <button class="post-option">📅 Match Request</button>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="createPost()">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="posts-container"></div>
+
+                    <div id="posts-empty" class="empty-state">
+                        <div class="empty-icon">🎾</div>
+                        <p>No posts yet. Create your first post to get started!</p>
+                    </div>
+                </div>
+
+                <!-- Matches View -->
+                <div id="matches-view" class="wide-container hidden">
+                    <div class="matches-header">
+                        <h2>Find Tennis Partners</h2>
+                        <div class="matches-search">
+                            <div class="search-input">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" placeholder="Search by location, skill level...">
+                            </div>
+                            <button class="btn btn-secondary">🔽 Filters</button>
+                        </div>
+                    </div>
+
+                    <div id="matches-container" class="matches-grid"></div>
+
+                    <div id="matches-empty" class="empty-state hidden">
+                        <div class="empty-icon">👥</div>
+                        <p>No matches found. Try adjusting your search filters.</p>
+                    </div>
+                </div>
+
+                <!-- Messages View -->
+                <div id="messages-view" class="messages-container hidden">
+                    <div class="messages-header">
+                        <h2>Messages</h2>
+                    </div>
+
+                    <div id="messages-container"></div>
+
+                    <div id="messages-empty" class="empty-state">
+                        <div class="empty-icon">💬</div>
+                        <p>No messages yet. Connect with tennis partners to start chatting!</p>
+                    </div>
+                </div>
+
+                <!-- Profile View -->
+                <div id="profile-view" class="profile-container hidden">
+                    <div class="card">
+                        <div class="profile-header">
+                            <span class="profile-avatar">🎾</span>
+                            <div class="profile-info">
+                                <h2 id="profile-name">User Name</h2>
+                                <p class="profile-location" id="profile-location">Location</p>
+                                <div class="profile-stats">
+                                    <span class="skill-badge" id="profile-skill">Skill Level</span>
+                                    <div class="rating">
+                                        <span class="star">⭐</span>
+                                        <span id="profile-rating">0</span>
+                                    </div>
+                                    <span class="matches-count"><span id="profile-matches">0</span> matches played</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="profile-bio-section" class="profile-section hidden">
+                            <h3 class="section-title">About</h3>
+                            <p id="profile-bio"></p>
+                        </div>
+
+                        <div id="profile-availability-section" class="profile-section hidden">
+                            <h3 class="section-title">Availability</h3>
+                            <div class="availability-tags" id="profile-availability-tags"></div>
+                        </div>
+
+                        <div class="profile-footer">
+                            <p>Member since <span id="profile-joined">Date</span></p>
+                        </div>
+                    </div>
+
+                    <div class="settings-menu">
+                        <h3 class="settings-title">Account Settings</h3>
+                        <button class="settings-item">Edit Profile</button>
+                        <button class="settings-item">Privacy Settings</button>
+                        <button class="settings-item">Notification Preferences</button>
+                        <button class="settings-item danger" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
