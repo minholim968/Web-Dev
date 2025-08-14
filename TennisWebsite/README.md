@@ -1,7 +1,7 @@
 # Web-Dev
-# 🎾 EnthusiTennis — Connect, Play, Improve
+# 🎾 TenniFull — Connect, Play, Improve
 
-EnthusiTennis is a **front-end-only** web application designed to connect tennis players, find match partners, share posts, and manage a personal profile.  
+TenniFull is a **front-end-only** web application designed to connect tennis players, find match partners, share posts, and manage a personal profile.  
 It is built with **HTML**, **CSS**, and **JavaScript** — no backend or frameworks.
 
 ---
